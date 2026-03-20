@@ -449,8 +449,24 @@ document.querySelectorAll('a,button,.contact-method,.svc-card,.team-card,.space-
 window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>60));
 function openDrawer(){document.getElementById('drawer').classList.add('open')}
 function closeDrawer(){document.getElementById('drawer').classList.remove('open')}
-const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in')}),{threshold:.08});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+// Reveal system with fallback
+function initReveals() {
+  const els = document.querySelectorAll('.reveal');
+  if (!els.length) return;
+  if ('IntersectionObserver' in window) {
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
+    els.forEach(el => obs.observe(el));
+  }
+  // Fallback: force all visible after 800ms in case observer doesn't fire
+  setTimeout(() => { els.forEach(el => el.classList.add('in')); }, 800);
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initReveals);
+} else {
+  initReveals();
+}
 </script>
 </body>
 </html>
