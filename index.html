@@ -1865,7 +1865,7 @@ footer {
       <div class="contact-layout">
         <!-- FORM -->
         <div>
-          <form class="styled-form" style="max-width:100%;" onsubmit="return false;">
+          <form id="appt-form" class="styled-form" style="max-width:100%;" onsubmit="return false;">
             <div class="form-group-row">
               <div class="form-group">
                 <label class="form-label">Name</label>
@@ -2116,6 +2116,91 @@ window.addEventListener('hashchange', initFromHash);
 
 // Trigger initial reveal after short delay (fonts loaded)
 setTimeout(initReveal, 200);
+</script>
+
+<script id="appt-sms-handler">
+(function () {
+  var form = document.getElementById('appt-form');
+  if (!form) return;
+
+  // Kill the dead onsubmit
+  form.onsubmit = null;
+
+  // ── Desktop fallback banner ──────────────────────────────
+  var banner = document.createElement('div');
+  banner.id = 'appt-desktop-fallback';
+  banner.style.cssText = [
+    'display:none',
+    'margin-top:1.75rem',
+    'padding:1.25rem 1.75rem',
+    'background:var(--charcoal,#1a1a1a)',
+    'border:1px solid var(--gold,#c8a96e)',
+    'color:var(--parchment,#f5f0e8)',
+    'font-family:inherit',
+    'font-size:0.875rem',
+    'letter-spacing:0.08em',
+    'line-height:1.7',
+    'text-align:center'
+  ].join(';');
+
+  banner.innerHTML =
+    '<span style="display:block;opacity:0.55;font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:0.6rem">' +
+      'To request by text or call' +
+    '</span>' +
+    '<a href="tel:+18584595464" style="color:var(--gold,#c8a96e);font-size:1.05rem;letter-spacing:0.04em;text-decoration:none;font-weight:500">' +
+      '(858) 459-5464' +
+    '</a>' +
+    '<span style="display:block;margin-top:0.65rem;opacity:0.45;font-size:0.68rem;letter-spacing:0.14em">' +
+      'Tuesday – Saturday · 9am – 6pm' +
+    '</span>';
+
+  var submitBtn = form.querySelector('button[type="submit"]');
+  if (submitBtn && submitBtn.parentNode) {
+    submitBtn.parentNode.insertBefore(banner, submitBtn.nextSibling);
+  }
+
+  // ── Device detection ─────────────────────────────────────
+  function isMobile() {
+    return /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+  }
+
+  // ── Submit handler ───────────────────────────────────────
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var inputs  = form.querySelectorAll('input, select, textarea');
+    var name    = inputs[0] ? inputs[0].value.trim() : '';
+    var phone   = inputs[1] ? inputs[1].value.trim() : '';
+    var stylist = inputs[2] ? inputs[2].value         : '';
+    var service = inputs[3] ? inputs[3].value         : '';
+    var msg     = inputs[4] ? inputs[4].value.trim()  : '';
+
+    var radios  = form.querySelectorAll('input[type="radio"]');
+    var contact = '';
+    radios.forEach(function (r) { if (r.checked) contact = r.value; });
+
+    // Build the pre-filled message body
+    var body = 'Hi, I’d like to request an appointment at Jax & King.';
+    if (name)    body += '\n\nName: '               + name;
+    if (phone)   body += '\nPhone: '                 + phone;
+    if (stylist) body += '\nPreferred Stylist: '     + stylist;
+    if (service) body += '\nService: '               + service;
+    if (msg)     body += '\nNotes: '                 + msg;
+    if (contact) body += '\nBest way to reach me: '  + contact;
+
+    if (isMobile()) {
+      // Mobile: open Messages with pre-filled text
+      window.location.href = 'sms:+18584595464?body=' + encodeURIComponent(body);
+    } else {
+      // Desktop: reveal the phone banner
+      var fb = document.getElementById('appt-desktop-fallback');
+      if (fb) {
+        fb.style.display = 'block';
+        fb.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+  });
+})();
 </script>
 </body>
 </html>
