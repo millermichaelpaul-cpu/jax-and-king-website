@@ -1512,9 +1512,9 @@ footer {
           <div class="team-pull-quote">
             "Nothing added, nothing removed without a reason."
           </div>
-          <div style="font-family:'Jost',sans-serif; font-size:9px; letter-spacing:0.26em; text-transform:uppercase; color:var(--gold); margin-bottom:32px; opacity:0.8;">Cut & Color · New York Fashion Week · 20 Seasons · LA & SF Shows</div>
+          <div style="font-family:'Jost',sans-serif; font-size:9px; letter-spacing:0.26em; text-transform:uppercase; color:var(--gold); margin-bottom:32px; opacity:0.8;">Cut & Color · New York Fashion Week · L'Oréal Professional Educator · Mexico City · LA & SF</div>
           <div class="team-bio">
-            <p>Franco has worked backstage at New York Fashion Week on and off for twenty years. That kind of career doesn't happen by accident — it is built on a reputation for being someone a show can rely on: technically precise, professionally invisible, and capable of delivering a look cleanly under conditions that don't forgive hesitation. He has recently committed to two shows per season, alongside an expanding presence at shows in Los Angeles and San Francisco.</p>
+            <p>Franco came up through the industry when craft still had to be proven with your hands. He trained with L'Oréal Professional and went on to lead national education programs in Mexico City — work that shaped the technical foundation of an entire generation of stylists across the country. Fashion week found him the same way it finds people who are genuinely serious about the work: the industry noticed, and the invitations continued. New York first, then Los Angeles and San Francisco — a presence at the shows that has become part of the rhythm of how he lives the craft. The runway is not a credential he visits occasionally. It is where Franco has always returned to stay honest about what the work actually requires.</p>
             <p>In the salon, that same discipline applies across both cut and color. His cuts are built on observation — growth patterns, density, how hair actually behaves in the three weeks after an appointment, not just the day of. His color work follows the same logic: no unnecessary moves, nothing added that doesn't serve the structure already there. He works quietly, moves with precision, and has an almost architectural approach to texture and tone: nothing added, nothing removed without a reason.</p>
             <p>If you have had a haircut that was consistently right for years and you could never quite explain why — that is the kind of work Franco produces.</p>
           </div>
@@ -1539,7 +1539,7 @@ footer {
             "Her clients are the ones whose hair consistently prompts the question: is that your natural color?"
           </div>
           <div class="team-bio">
-            <p>Lindsay works in the space where color disappears into itself. Her specialty is natural tone — soft, effortless, nothing forced. She is drawn to color that looks like it belongs to you, not color that announces itself. Her clients are the ones whose hair consistently prompts the question: is that your natural color?</p>
+            <p>Lindsay built her foundation on the East Coast — training and working in Greenwich, Connecticut, where a high standard was simply the expectation. Sixteen years later, that foundation still shows. Her specialty is color that disappears into itself: natural tone, soft dimension, nothing forced. She is drawn to work that looks like it belongs to you, not color that announces itself.</p>
             <p>She has worked backstage at New York Fashion Week — an environment that demands a different kind of precision than the salon, and one she navigated with the same quiet control she brings to every appointment.</p>
             <p>She is particularly skilled with guests navigating a color transition — those growing out, softening, or stepping back toward something more authentic. She has a patience for the process that makes her exactly who you want for that kind of work.</p>
           </div>
@@ -1594,9 +1594,11 @@ footer {
           <div class="sc-eyebrow">Train With Us</div>
           <div class="sc-head">The White Hare Black Sheep Program.</div>
           <div class="sc-copy">
-            Jaylin did not just train at Sassoon. He taught there. Paul did not just work with L'Oréal Professional for eighteen years — he built the teaching methodologies other educators were trained on, deployed across Canada at the national academy and in shows nationwide. Jaylin did the same in the United States.
+            Paul spent eighteen years as a L'Oréal Professional educator — not in front of clients, but in front of rooms of other educators. He built the teaching frameworks other instructors were trained on, delivered at the national academy across Canada and carried into shows nationwide. Jaylin built his own education career on its own terms — trained within a lineage that defined the global technical standard, then teaching it in the United States at a level that matched everything Paul was doing in Canada.
             <br><br>
             Between them, the founders of this program have shaped how a significant portion of the North American industry was trained. What they pass on through White Hare Black Sheep is not a curriculum assembled from experience. It is a lineage — built at the highest level of the industry, refined over decades, and now available in one room in La Jolla.
+            <br><br>
+            Training stylists has never been something added to this brand. It was here before the first client appointment was ever booked — part of the original architecture of Jax & King, running continuously since the beginning.
             <br><br>
             We teach how hair actually behaves. How to read structure before you touch scissors. How to build a sustainable book, not just a following.
           </div>
@@ -1613,7 +1615,7 @@ footer {
     <div class="container-narrow">
       <div class="eyebrow" style="margin-bottom:12px;">Start the Conversation</div>
       <h2 class="service-name" style="margin-bottom:48px;">Tell us about yourself.</h2>
-      <form class="styled-form" onsubmit="return false;">
+      <form id="join-form" class="styled-form" onsubmit="return false;">
         <div class="form-group-row">
           <div class="form-group">
             <label class="form-label">Name</label>
@@ -2118,15 +2120,15 @@ window.addEventListener('hashchange', initFromHash);
 setTimeout(initReveal, 200);
 </script>
 
-<script id="appt-sms-handler">
+<script id="appt-handler">
 (function () {
+  var WEB3FORMS_KEY = 'e754de16-50cb-4677-929f-266f3864610f';
+
   var form = document.getElementById('appt-form');
   if (!form) return;
-
-  // Kill the dead onsubmit
   form.onsubmit = null;
 
-  // ── Desktop fallback banner ──────────────────────────────
+  // ── Desktop fallback banner ──────────────────────────────────────────────
   var banner = document.createElement('div');
   banner.id = 'appt-desktop-fallback';
   banner.style.cssText = [
@@ -2142,13 +2144,12 @@ setTimeout(initReveal, 200);
     'line-height:1.7',
     'text-align:center'
   ].join(';');
-
   banner.innerHTML =
     '<span style="display:block;opacity:0.55;font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:0.6rem">' +
       'To request by text or call' +
     '</span>' +
     '<a href="tel:+18584595464" style="color:var(--gold,#c8a96e);font-size:1.05rem;letter-spacing:0.04em;text-decoration:none;font-weight:500">' +
-      '(858) 459-5464' +
+      '(858) 459–5464' +
     '</a>' +
     '<span style="display:block;margin-top:0.65rem;opacity:0.45;font-size:0.68rem;letter-spacing:0.14em">' +
       'Tuesday – Saturday · 9am – 6pm' +
@@ -2159,41 +2160,155 @@ setTimeout(initReveal, 200);
     submitBtn.parentNode.insertBefore(banner, submitBtn.nextSibling);
   }
 
-  // ── Device detection ─────────────────────────────────────
   function isMobile() {
     return /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
   }
 
-  // ── Submit handler ───────────────────────────────────────
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-
+  function collectData() {
     var inputs  = form.querySelectorAll('input, select, textarea');
     var name    = inputs[0] ? inputs[0].value.trim() : '';
     var phone   = inputs[1] ? inputs[1].value.trim() : '';
     var stylist = inputs[2] ? inputs[2].value         : '';
     var service = inputs[3] ? inputs[3].value         : '';
     var msg     = inputs[4] ? inputs[4].value.trim()  : '';
-
     var radios  = form.querySelectorAll('input[type="radio"]');
     var contact = '';
     radios.forEach(function (r) { if (r.checked) contact = r.value; });
+    return { name: name, phone: phone, stylist: stylist, service: service, message: msg, contactMethod: contact };
+  }
 
-    // Build the pre-filled message body
+  function sendEmail(data) {
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        access_key:        WEB3FORMS_KEY,
+        subject:           'New Appointment Request — Jax & King',
+        from_name:         'Jax & King Website',
+        name:              data.name    || '(not provided)',
+        phone:             data.phone   || '(not provided)',
+        preferred_stylist: data.stylist || 'No preference',
+        service:           data.service || '(not specified)',
+        message:           data.message || '(none)',
+        contact_method:    data.contactMethod || '(not specified)'
+      })
+    }).catch(function () {});
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var data = collectData();
+    sendEmail(data);
+
     var body = 'Hi, I’d like to request an appointment at Jax & King.';
-    if (name)    body += '\n\nName: '               + name;
-    if (phone)   body += '\nPhone: '                 + phone;
-    if (stylist) body += '\nPreferred Stylist: '     + stylist;
-    if (service) body += '\nService: '               + service;
-    if (msg)     body += '\nNotes: '                 + msg;
-    if (contact) body += '\nBest way to reach me: '  + contact;
+    if (data.name)          body += '\n\nName: '               + data.name;
+    if (data.phone)         body += '\nPhone: '                 + data.phone;
+    if (data.stylist)       body += '\nPreferred Stylist: '     + data.stylist;
+    if (data.service)       body += '\nService: '               + data.service;
+    if (data.message)       body += '\nNotes: '                 + data.message;
+    if (data.contactMethod) body += '\nBest way to reach me: '  + data.contactMethod;
 
     if (isMobile()) {
-      // Mobile: open Messages with pre-filled text
       window.location.href = 'sms:+18584595464?body=' + encodeURIComponent(body);
     } else {
-      // Desktop: reveal the phone banner
       var fb = document.getElementById('appt-desktop-fallback');
+      if (fb) {
+        fb.style.display = 'block';
+        fb.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+  });
+})();
+</script>
+<script id="join-handler">
+(function () {
+  var WEB3FORMS_KEY = 'e754de16-50cb-4677-929f-266f3864610f';
+
+  var form = document.getElementById('join-form');
+  if (!form) return;
+  form.onsubmit = null;
+
+  // ── Desktop fallback banner ──────────────────────────────────────────────
+  var banner = document.createElement('div');
+  banner.id = 'join-desktop-fallback';
+  banner.style.cssText = [
+    'display:none',
+    'margin-top:1.75rem',
+    'padding:1.25rem 1.75rem',
+    'background:var(--charcoal,#1a1a1a)',
+    'border:1px solid var(--gold,#c8a96e)',
+    'color:var(--parchment,#f5f0e8)',
+    'font-family:inherit',
+    'font-size:0.875rem',
+    'letter-spacing:0.08em',
+    'line-height:1.7',
+    'text-align:center'
+  ].join(';');
+  banner.innerHTML =
+    '<span style="display:block;opacity:0.55;font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:0.6rem">' +
+      'Your interest has been received. To follow up directly:' +
+    '</span>' +
+    '<a href="tel:+18584595464" style="color:var(--gold,#c8a96e);font-size:1.05rem;letter-spacing:0.04em;text-decoration:none;font-weight:500">' +
+      '(858) 459–5464' +
+    '</a>' +
+    '<span style="display:block;margin-top:0.65rem;opacity:0.45;font-size:0.68rem;letter-spacing:0.14em">' +
+      'Tuesday – Saturday · 9am – 6pm' +
+    '</span>';
+
+  var submitBtn = form.querySelector('button[type="submit"]');
+  if (submitBtn && submitBtn.parentNode) {
+    submitBtn.parentNode.insertBefore(banner, submitBtn.nextSibling);
+  }
+
+  function isMobile() {
+    return /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+  }
+
+  function collectData() {
+    var name       = (form.querySelector('input[type="text"]') || {}).value || '';
+    var experience = '';
+    var specialty  = '';
+    var selects    = form.querySelectorAll('select');
+    if (selects[0]) experience = selects[0].value;
+    if (selects[1]) specialty  = selects[1].value;
+    var message    = (form.querySelector('textarea') || {}).value || '';
+    var portfolio  = (form.querySelector('input[type="url"]') || {}).value || '';
+    return { name: name.trim(), experience: experience, specialty: specialty, message: message.trim(), portfolio: portfolio.trim() };
+  }
+
+  function sendEmail(data) {
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        access_key:      WEB3FORMS_KEY,
+        subject:         'Team Interest — Jax & King',
+        from_name:       'Jax & King Website',
+        name:            data.name       || '(not provided)',
+        experience:      data.experience || '(not specified)',
+        specialty:       data.specialty  || '(not specified)',
+        message:         data.message    || '(none)',
+        portfolio:       data.portfolio  || '(none)'
+      })
+    }).catch(function () {});
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var data = collectData();
+    sendEmail(data);
+
+    var body = 'Hi, I\u2019d like to express interest in the Jax & King team.';
+    if (data.name)       body += '\n\nName: '            + data.name;
+    if (data.experience) body += '\nExperience: '        + data.experience;
+    if (data.specialty)  body += '\nSpecialty: '         + data.specialty;
+    if (data.message)    body += '\nAbout me: '          + data.message;
+    if (data.portfolio)  body += '\nPortfolio/Instagram: ' + data.portfolio;
+
+    if (isMobile()) {
+      window.location.href = 'sms:+18584595464?body=' + encodeURIComponent(body);
+    } else {
+      var fb = document.getElementById('join-desktop-fallback');
       if (fb) {
         fb.style.display = 'block';
         fb.scrollIntoView({ behavior: 'smooth', block: 'center' });
